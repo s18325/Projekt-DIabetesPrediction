@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+Logowanie do istniejącego konta
+{% endblock %}
+{% block content %}
+<main class="text-center">
+    <div class="container">
+        <img class="mb-4" src="{{ url_for('static', filename='images/home.png') }}">
+        <h1 class="h3 mb-3 font-weight-normal">Zaloguj Się</h1>
+        <form method="POST" style="background-color: lightgray">
+            {{ form.hidden_tag() }}
+
+            {{ form.username.label }}
+            {{ form.username(class="form-control", placeholder="wpisz nazwę użytkownika") }}
+
+            {{ form.password.label }}
+            {{ form.password(class="form-control", placeholder="wpisz hasło") }}
+
+            <br>
+            <div class="checkbox mb-3">
+                <h6>Nie masz jeszcze konta?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('registration_page') }}">Rejestracja</a>
+            </div>
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+    </div>
+</main>
+{% endblock %}

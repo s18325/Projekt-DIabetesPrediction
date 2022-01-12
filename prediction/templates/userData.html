@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block title %}
+Przewidywanie cukrzycy
+{% endblock %}
+{% block content %}
+<div class="container">
+    <img class="mb-4" src="{{ url_for('static', filename='images/home.png') }}">
+</div>
+{% endblock %}
+
+{% block data %}
+<div class="container">
+    <p>Pamiętaj że ten wynik nie jest diagnozą lekarską. Jednak cukrzyca to podstępna choroba, naszym celem jest tylko
+    pomóc Ci w uniknięciu poważnych powikłań jakie niesie zbyt późno podjęte leczenie. Jeśli wyniki testu są niepokojące,
+    nie zwlekaj, skontaktuj się z lekarzem....</p>
+    <div class="text-center" style="font-size: 1.5rem">
+         <a href="https://www.oferteo.pl/diabetolodzy-firmy" target="_blank">Znajdź najlepszego Diabetologa</a>
+    </div>
+
+</div>
+<br>
+<h2>Twoje poprzednie wyniki</h2>
+<table class="table table-hover table-dark" style="text-align: center">
+    <thead>
+    <tr>
+        <th scope="col">Data testu</th>
+        <th scope="col">Nadciśnienie</th>
+        <th scope="col">Cholesterol</th>
+        <th scope="col">BMI</th>
+        <th scope="col">Palacz</th>
+        <th scope="col">Udar</th>
+        <th scope="col">Zawał</th>
+        <th scope="col">Aktywność fiz.</th>
+        <th scope="col">Owoce</th>
+        <th scope="col">Warzywa</th>
+        <th scope="col">Alkohol</th>
+        <th scope="col">Zła kondycja psych.</th>
+        <th scope="col">Płeć</th>
+        <th scope="col">Wiek</th>
+        <th scope="col">Wykształcenie</th>
+        <th scope="col">Cukrzyca</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for data in storedData %}
+        <tr>
+            <td>{{ data.date }}</td>
+            <td>{{ 'T' if data.highBP else 'N' }}</td>
+            <td>{{ 'T' if data.highChol else 'N' }}</td>
+            <td>{{ data.bmi }}</td>
+            <td>{{ 'T' if data.smoker else 'N' }}</td>
+            <td>{{ 'T' if data.stroke else 'N' }}</td>
+            <td>{{ 'T' if data.heartDiseaseOrAttack else 'N' }}</td>
+            <td>{{ 'T' if data.physActivity else 'N' }}</td>
+            <td>{{ 'T' if data.fruits else 'N' }}</td>
+            <td>{{ 'T' if data.veggies else 'N' }}</td>
+            <td>{{ 'T' if data.alcConsumption else 'N' }}</td>
+            <td>{{ data.mentalHealth }}</td>
+            <td>{{ 'M' if data.sex else 'K' }}</td>
+            <td>{% if data.age==0 %}
+                18-24 lat
+                {% elif data.age==1 %}
+                25-29 lat
+                {% elif data.age==2 %}
+                30-34 lat
+                {% elif data.age==3 %}
+                35-39 lat
+                {% elif data.age==4 %}
+                40-44 lat
+                {% elif data.age==5 %}
+                45 - 49 lat
+                {% elif data.age==6 %}
+                50 - 54 lat
+                {% elif data.age==7 %}
+                55 - 59 lat
+                {% elif data.age==8 %}
+                60 - 64 lat
+                {% elif data.age==9 %}
+                65 - 69 lat
+                {% elif data.age==10 %}
+                70 - 74 lat
+                {% elif data.age==11 %}
+                75 - 79 lat
+                {% elif data.age==12 %}
+                80 i więcej lat
+                {% endif %}
+            </td>
+            <td>{% if data.education==1 %}
+                nie ukończyłem szkoły podstawowej
+                {% elif data.education==2 %}
+                skończyłem szkołę podstawową
+                {% elif data.education==3 %}
+                średnie bez matury
+                {% elif data.education==4 %}
+                średnie z maturą
+                {% elif data.education==5 %}
+                licencjat/inżynier
+                {% elif data.education==6 %}
+                wyższe (co najmniej magisterskie)
+                {% endif %}
+            </td>
+            <td>
+                 {% if data.diabetes==0 %}
+                 zdrowy
+                 {% elif data.diabetes==1 %}
+                 stan przedcukrzycowy
+                 {% elif data.diabetes==2 %}
+                 cukrzyca
+                 {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% if storedData is defined %}
+{% else %}
+<p>Brak danych do wyświetlenia</p>
+{% endif %}
+{% endblock %}

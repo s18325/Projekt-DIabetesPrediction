@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+Diabetes Manager
+{% endblock %}
+{% block content %}
+<div class="container text-center">
+    <img src="{{ url_for('static', filename='images/home.png') }}" alt="welcome">
+    <p>
+    Możesz sprawdzić czy twój stan zdrowia niesie ryzoko wystąpienia najczęstszych cywilizacyjnych układu krążenia.
+    Przewidywanie różnych chorób, przechowywanie danych nt. swojego zdrowia oraz łatwy kontak do lekarzy specjalistów
+    tylko dla zarejestrowanych użytkowników. Możesz wypróbować serwis na przykładzie cukrzycy.
+</p>
+<a class="btnbtn btn-lg btn-primary btn-block btn-primary" href="{{ url_for('prediction_page') }}">Wejdź jako Gość</a>
+</div>
+{% endblock %}

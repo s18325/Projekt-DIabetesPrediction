@@ -1,0 +1,61 @@
+<main class="text-center">
+    <div class="container">
+        <img class="mb-4" src="{{ url_for('static', filename='images/home.png') }}">
+        <h1 class="h3 mb-3 font-weight-normal">Wypełnij wszystkie pola w celu weryfikacji choroby cukrzycowej</h1>
+        <form method="POST" STYLE="display: grid; grid-template-columns: 50% 50%; background-color: lightgray">
+            {{ form.highBP.label(style=" margin: 5px 5px") }}
+            {{ form.highBP(placeholder="Nadciśnienie", style=" margin: 5px 5px") }}
+
+            {{ form.highChol.label(style=" margin: 5px 5px") }}
+            {{ form.highChol(placeholder="Cholesterol", style=" margin: 5px 5px") }}
+
+            {{ form.bmi.label(style=" margin: 5px 5px") }}
+            {{ form.bmi(placeholder="BMI", style=" margin: 5px 5px") }}
+
+            {{ form.smoker.label(style=" margin: 5px 5px") }}
+            {{ form.smoker(placeholder="Palenie", style=" margin: 5px 5px") }}
+
+            {{ form.stroke.label(style=" margin: 5px 5px") }}
+            {{ form.stroke(placeholder="Udar", style=" margin: 5px 5px") }}
+
+            {{ form.heartDiseaseOrAttack.label(style=" margin: 5px 5px") }}
+            {{ form.heartDiseaseOrAttack(placeholder="Zawał serca", style=" margin: 5px 5px") }}
+
+            {{ form.physActivity.label(style=" margin: 5px 5px") }}
+            {{ form.physActivity(placeholder="Aktywność fizyczna", style=" margin: 5px 5px") }}
+
+            {{ form.fruits.label(style=" margin: 5px 5px") }}
+            {{ form.fruits(placeholder="Owoce", style=" margin: 5px 5px") }}
+
+            {{ form.veggies.label(style=" margin: 5px 5px") }}
+            {{ form.veggies(placeholder="Warzywa", style=" margin: 5px 5px") }}
+
+            {{ form.alcConsumption.label(style=" margin: 5px 5px") }}
+            {{ form.alcConsumption(placeholder="Alkohol", style=" margin: 5px 5px") }}
+
+            {{ form.mentalHealth.label(style=" margin: 5px 5px") }}
+            {{ form.mentalHealth(placeholder="Podaj ilość dni", style=" margin: 5px 5px") }}
+
+            {{ form.sex.label(style=" margin: 5px 5px") }}
+            <div>
+                {% for subfield in form.sex %}
+                <div class="form-check form-check-inline">
+                    <tr>
+                        <td>{{ subfield(class="form-check-input") }}</td>
+                        <td>{{ subfield.label(class="form-check-label") }}</td>
+                    </tr>
+                </div>
+                {% endfor %}
+            </div>
+
+
+            {{ form.age.label(style=" margin: 5px 5px") }}
+            {{ form.age(placeholder="Wiek", style=" margin: 5px 5px; display: inline") }}
+
+            {{ form.education.label(style=" margin: 5px 5px") }}
+            {{ form.education(placeholder="Wykształcenie", style=" margin: 5px 5px") }}
+            <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+        </form>
+    </div>
+</main>
